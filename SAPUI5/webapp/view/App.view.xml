@@ -6,17 +6,14 @@
         <App>
             <pages>
                 <Page title="{i18n>appTitle}">
+                    <headerContent>
+                        <Button id="helloDialogHeader"
+                            icon="sap-icon://action"
+                            press=".onOpenDialogHeader"
+                            class="sapUiSmallMarginEnd" />
+                    </headerContent>
                     <content>
-                        <Panel headerText="{i18n>helloPanel}" class="sapUiResponsiveMargin" width="auto">
-                            <content>
-                                <Button text="{i18n>showHelloButtonText}"
-                                    press=".onShowHello" class="sapUiSmallMarginEnd" />
-                                <Input value="{/recipient/name}"
-                                    width="60%" valueLiveUpdate="true"/>
-                                <Text text="Hello {/recipent/name}"
-                                    class="boldElements sapUiSmallMargin"/>
-                            </content>
-                        </Panel>
+                        <mvc:XMLView viewName="namespace.SAPUI5.view.HelloPanel" />
                     </content>
                 </Page>
             </pages>
