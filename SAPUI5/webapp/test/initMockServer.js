@@ -1,6 +1,6 @@
 sap.ui.define([
     '../localService/mockserver',
-    'sap/m/MessageBox',
+    'sap/m/MessageBox'
 
 ],
     /**
