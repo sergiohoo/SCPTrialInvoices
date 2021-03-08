@@ -1,11 +1,11 @@
 sap.ui.define([
-    "sap/ui/core/util/sap/ui/app/MockServer",
+    "sap/ui/core/util/MockServer",
     "sap/ui/model/json/JSONModel",
     "sap/base/util/UriParameters",
     "sap/base/Log"
 ],
     /**
-     * @param {typeof sap.ui.core.util.sap.ui.app.MockServer} MockServer
+     * @param {typeof sap.ui.core.util.MockServer} MockServer
      * @param {typeof sap.ui.model.json.JSONModel} JSONModel
      * @param {typeof sap.base.util.UriParameters} UriParameters
      * @param {typeof sap.base.Log} Log
@@ -39,11 +39,11 @@ sap.ui.define([
 
                         // parse manifest for local metadata URI
                         var sJsonFilesUrl = sap.ui.require.toUrl(_sJsonFilesPath);
-                        var oMainDataSource = oManifestModel.getProperty("sap.app/dataSources/mainService");
+                        var oMainDataSource = oManifestModel.getProperty("/sap.app/dataSources/mainService");
                         var sMetadataUrl = sap.ui.require.toUrl(_sAppPath + oMainDataSource.settings.localUri);
 
                         // ensure there is a trailing slash
-                        var sMockServerUrl = oMainDataSource.uri && new URIError(oMainDataSource.uri).absoluteTo(sap.ui.require.toUrl(_sAppPath)).toString();
+                        var sMockServerUrl = oMainDataSource.uri && new URI(oMainDataSource.uri).absoluteTo(sap.ui.require.toUrl(_sAppPath)).toString();
 
                         // create a mock server instance or stop the existing one to restart
                         if (!oMockServer) {
@@ -57,7 +57,7 @@ sap.ui.define([
                         // configure the mock server with the given options or a default delay of 0.5s
                         MockServer.config({
                             autoRespond: true,
-                            autoRespondAfter: (oOptionsParameter.delay || oUriParameters.get("serverDelay") || 500)
+                            autoRespondAfter: (oOptions.delay || oUriParameters.get("serverDelay") || 500)
                         });
 
                         // simulate all data request using mock data
@@ -66,7 +66,7 @@ sap.ui.define([
                             bgenerateMissingMockData: true
                         });
 
-                        var aRequest = oMockServer.getRequest();
+                        var aRequest = oMockServer.getRequests();
 
                         // compose an error response
                         var fnResponse = function (iErrCode, sMessage, aRequest) {
@@ -95,7 +95,7 @@ sap.ui.define([
                         }
 
                         // set request and start the server
-                        oMockServer.setRequest(aRequest);
+                        oMockServer.setRequests(aRequest);
                         oMockServer.start();
 
                         Log.info("Running the app with mock data");
