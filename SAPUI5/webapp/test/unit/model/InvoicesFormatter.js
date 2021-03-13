@@ -1,5 +1,3 @@
-
-
 sap.ui.define([
     "namespace/SAPUI5/model/InvoicesFormatter",
     "sap/ui/model/resource/ResourceModel"
@@ -15,26 +13,21 @@ sap.ui.define([
                 this._oResourceModel = new ResourceModel({
                     bundleUrl: sap.ui.require.toUrl("namespace/SAPUI5/") + "i18n/i18n.properties"
                 })
-            }
-
+            },
             afterEach: function () {
                 this._oResourceModel.destroy();
             }
         });
-
-        QUnit.test("Should return the Invoice Status", function () {
+        QUnit.test("Should return the Invoice Status", function (assert) {
 
             let oModel = this.stub();
             oModel.withArgs("i18n").returns(this._oResourceModel);
-
             let oViewStub = {
                 getModel: oModel
             };
-
             let oControllerStub = {
                 getView: this.stub().returns(oViewStub)
-            }
-
+            };
             let fnIsolatedFormatter = InvoicesFormatter.invoiceStatus.bind(oControllerStub);
 
             //Assert
