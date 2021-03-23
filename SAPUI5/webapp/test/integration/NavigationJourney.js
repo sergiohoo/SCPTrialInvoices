@@ -11,7 +11,7 @@ sap.ui.define([
         QUnit.module("Navigation");
 
         opaQunit("Should open Hello Dialog", function (Given, When, Then) {
-            
+
             //initialize mock server 
             mockserver.init();
 
@@ -35,4 +35,3 @@ sap.ui.define([
 
 
 
-    
