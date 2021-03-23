@@ -1,0 +1,8 @@
+<mvc:View controllerName="namespace.SAPUI5.controller.Details"
+            xmlns="sap.m"
+            xmlns:mvc="sap.ui.core.mvc"
+            displayBlock="true">
+    <Page title="{i18n>detailsPageTitle}">
+        <ObjectHeader title="Invoice"></ObjectHeader>
+    </Page>
+</mvc:View>
