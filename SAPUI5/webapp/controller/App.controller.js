@@ -7,9 +7,9 @@ sap.ui.define([
     function (Controller) {
         return Controller.extend("namespace.SAPUI5.controller.App", {
             onInit: function () {
-
+                this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());
             },
-            onOpenDialogHeader : function () {
+            onOpenDialogHeader: function () {
                 this.getOwnerComponent().openHelloDialog();
             }
         })
