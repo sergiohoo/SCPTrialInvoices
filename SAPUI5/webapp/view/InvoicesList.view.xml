@@ -2,54 +2,58 @@
             xmlns="sap.m"
             xmlns:mvc="sap.ui.core.mvc">
     
-    <Table   id="invoiceList"
-            headerText="{i18n>invoiceListTitle}"
-            class="sapUiResponsiveMargin"
-            width="auto"
-            items="{ path : 'northwind>/Invoices',
-                    sorter : {path : 'ShipperName',
-                                group: true}}">
+    <Panel accessibleRole="Region">
         <headerToolbar>
             <Toolbar >
                 <Title text="{i18n>invoiceListTitle}"/>
-                <ToolbarSpacer />
-                <SearchField width="50%" search=".onFilterInvoices" />
+                <ToolbarSpacer/>
+                <SearchField width="50%" 
+                             search=".onFilterInvoices"
+                             placeholder="{i18n>searchFieldPlaceHolder}"/>
             </Toolbar>
         </headerToolbar>
-        <columns>
-            <Column hAlign="End" minScreenWidth="Small" demandPopin="true" width="5em">
-                <Text text="{i18n>columnQuantity}"></Text>
-            </Column>
-            <Column>
-                <Text text="{i18n>columnName}"></Text>
-            </Column>
-            <Column minScreenWidth="Small" demandPopin="true">
-                <Text text="{i18n>columnStatus}"></Text>
-            </Column>
-            <Column minScreenWidth="Tablet">
-                <Text text="{i18n>columnSupplier}"></Text>
-            </Column>
-            <Column hAlign="End">
-                <Text text="{i18n>columnPrice}"></Text>
-            </Column>
-        </columns>
-        <items>
-            <ColumnListItem type="Navigation" press="navigateToDetails">
-                <cells>
-                    <ObjectNumber number="{northwind>Quantity}"></ObjectNumber>
-                    <ObjectIdentifier title="{northwind>ProductName}"></ObjectIdentifier>
-                    <Text text="{path: 'northwind>Status',formatter: '.formatter.invoiceStatus}"></Text>
-                    <Text text="{northwind>ShipperName}"></Text>
-                    <ObjectNumber number="{ parts: [{path:'northwind>ExtendedPrice'},
-                                        {path:'currency>/usd'}],
-                                type: 'sap.ui.model.type.Currency',
-                                formatOptions: {
-                                    showMeasure : false
-                                }}"
-                    unit="{currency>/usd}"
-                    state="{= ${northwind>ExtendedPrice} > 50 ? 'Success' : 'Error'}"></ObjectNumber>
-                </cells>
-            </ColumnListItem>
-        </items>
-    </Table>
+        <Table   id="invoiceList"
+                headerText="{i18n>invoiceListTitle}"
+                class="sapUiResponsiveMargin"
+                width="auto"
+                items="{ path : 'northwind>/Invoices',
+                        sorter : {path : 'ShipperName',
+                                    group: true}}">
+            <columns>
+                <Column hAlign="End" minScreenWidth="Small" demandPopin="true" width="5em">
+                    <Text text="{i18n>columnQuantity}"></Text>
+                </Column>
+                <Column>
+                    <Text text="{i18n>columnName}"></Text>
+                </Column>
+                <Column minScreenWidth="Small" demandPopin="true">
+                    <Text text="{i18n>columnStatus}"></Text>
+                </Column>
+                <Column minScreenWidth="Tablet">
+                    <Text text="{i18n>columnSupplier}"></Text>
+                </Column>
+                <Column hAlign="End">
+                    <Text text="{i18n>columnPrice}"></Text>
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem type="Navigation" press="navigateToDetails">
+                    <cells>
+                        <ObjectNumber number="{northwind>Quantity}"></ObjectNumber>
+                        <ObjectIdentifier title="{northwind>ProductName}"></ObjectIdentifier>
+                        <Text text="{path: 'northwind>Status',formatter: '.formatter.invoiceStatus}"></Text>
+                        <Text text="{northwind>ShipperName}"></Text>
+                        <ObjectNumber number="{ parts: [{path:'northwind>ExtendedPrice'},
+                                            {path:'currency>/usd'}],
+                                    type: 'sap.ui.model.type.Currency',
+                                    formatOptions: {
+                                        showMeasure : false
+                                    }}"
+                        unit="{currency>/usd}"
+                        state="{= ${northwind>ExtendedPrice} > 50 ? 'Success' : 'Error'}"></ObjectNumber>
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </Panel>
 </mvc:View>
